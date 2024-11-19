@@ -5,6 +5,7 @@ const cors = require("cors");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const AuthRouter = require("./Routes/AuthRouter");
+const ProfileRouter = require("./Routes/ProfileRouter");
 
 require("dotenv").config();
 require("./Models/db");
@@ -28,6 +29,7 @@ app.get("/ping", (req, res) => {
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/auth", AuthRouter);
+app.use('/user', ProfileRouter); // Add Profile routes under /user endpoint
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
