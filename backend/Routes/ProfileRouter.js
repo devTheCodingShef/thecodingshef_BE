@@ -1,12 +1,16 @@
+// routes/ProfileRouter.js
+const express = require("express");
+const router = express.Router();
 const {
   getProfile,
   updateProfile,
 } = require("../Controllers/ProfileController");
-const ensureAuthenticated = require("../Middlewares/Auth"); // Middleware to check if the user is authenticated
+const { ensureAuthenticated } = require("../Middlewares/Auth");
 
-const router = require("express").Router();
+// Get profile (accessible to authenticated users)
+router.get("/profile", ensureAuthenticated, getProfile);
 
-router.get("/profile", ensureAuthenticated, getProfile); // Get user profile
-router.put("/profile", ensureAuthenticated, updateProfile); // Update user profile
+// Update profile (accessible to authenticated users)
+router.put("/profile", ensureAuthenticated, updateProfile);
 
 module.exports = router;
